@@ -23,7 +23,7 @@ const Header = () => {
                                 color: "gold",
                                 fontFamily: "Monserrat",
                                 fontWeight: "bold",
-                                curser: "pointer",}}
+                                cursor: "pointer",}}
                                     >Crypto Rabbit
                     </Typography>
                     <Select variant='outlined'
