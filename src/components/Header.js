@@ -1,7 +1,8 @@
-import { AppBar, Toolbar, Container, Typography, Select, MenuItem } from '@mui/material'
+import { AppBar, Toolbar, Container, Select, MenuItem } from '@mui/material'
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CryptoState } from '../CryptoContext';
+import Link from '@mui/material/Link';
 
 const darkTheme = createTheme({
   palette: {
@@ -18,14 +19,9 @@ const Header = () => {
         <AppBar color='transparent' position='static'>
             <Container>
                 <Toolbar style={{ justifyContent: "space-between"}}>
-                    <Typography variant='h6'
-                                style={{ fley: 1,
-                                color: "gold",
-                                fontFamily: "Monserrat",
-                                fontWeight: "bold",
-                                cursor: "pointer",}}
-                                    >Crypto Rabbit
-                    </Typography>
+                    <Link href="/" underline="none" color ="gold" fontFamily= "Monserrat"  fontWeight= "bold">
+                      {'Crypto Rabbit'}
+                    </Link> 
                     <Select variant='outlined'
                         style={{
                             width: 100,
