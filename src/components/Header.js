@@ -2,7 +2,8 @@ import { AppBar, Toolbar, Container, Select, MenuItem } from '@mui/material'
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CryptoState } from '../CryptoContext';
-import Link from '@mui/material/Link';
+import { useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 const darkTheme = createTheme({
   palette: {
@@ -13,15 +14,22 @@ const darkTheme = createTheme({
 const Header = () => {
 
     const { currency, setCurrency} = CryptoState()
-    console.log(currency)
+    const navigate = useNavigate();
   return (
     <ThemeProvider theme={darkTheme}>
         <AppBar color='transparent' position='static'>
             <Container>
                 <Toolbar style={{ justifyContent: "space-between"}}>
-                    <Link href="/" underline="none" color ="gold" fontFamily= "Monserrat"  fontWeight= "bold">
-                      {'Crypto Rabbit'}
-                    </Link> 
+                    <Typography onClick={()=> navigate("/")}
+                    sx={{
+                      flex:1,
+                      color:"gold",
+                      fontFamily:"Montserrat",
+                      fontWeight:"bold",
+                      cursor:"pointer"
+                      }}>
+                      Crypto Rabbit
+                    </Typography>
                     <Select variant='outlined'
                         style={{
                             width: 100,

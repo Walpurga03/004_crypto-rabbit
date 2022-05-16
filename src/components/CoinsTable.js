@@ -1,4 +1,4 @@
-import { Container, LinearProgress, Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material'
+import { Box, Container, LinearProgress, Pagination, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import axios from 'axios'
 import React from 'react'
@@ -7,14 +7,15 @@ import { useEffect } from 'react'
 import { CoinList } from '../config/api'
 import { CryptoState } from '../CryptoContext'
 import { numberWithCommas } from './Banner/Carousel'
+import { useNavigate } from 'react-router-dom';
 
-  
 
 const CoinsTable = () => {
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1)
+    const navigate = useNavigate();
   
     const { currency, symbol } = CryptoState();
 
@@ -42,13 +43,16 @@ const CoinsTable = () => {
       <div>
         <ThemeProvider theme={darkTheme}>
             <Container style={{textAlign: "center"}}>
-                <Typography 
-                    variant='h4'
-                    style={{ margin:18, fontFamily: "Monserrat"}}>
-                        Cryptocurrency Prices by Market Cap
+                <Box sx={{
+                    m:5,
+                    fontFamily: 'Montserrat' 
+                }}>
+                <Typography variant='h4'>
+                Preise nach Marktkapitalisierung
                 </Typography>
+                </Box>
                 <TextField 
-                    label="Search For a Crypto Currency.." 
+                    label="Suche nach einer Kryptowährung.." 
                     variant='outlined'
                     style={{marginBottom: 20, width: "100%"}}
                     onChange={(e) => setSearch(e.target.value)}
@@ -61,7 +65,7 @@ const CoinsTable = () => {
                             <Table>
                                 <TableHead style={{backgroundColor: '#EEBC1D'}}> 
                                     <TableRow>
-                                        {["Coin", "Price", "24h Change", "Market Cap"].map ((head) => (
+                                        {["Coin", "Preis", "24h Change", "Market Cap"].map ((head) => (
                                             <TableCell 
                                                 style={{
                                                     color: "black",
@@ -82,7 +86,8 @@ const CoinsTable = () => {
                                         .map(row => {
                                             const profit = row.price_change_percentage_24h > 0;
                                             return (
-                                                <TableRow sx={{
+                                                <TableRow onClick={ () =>navigate(`/coins/${row.id}`)}
+                                                     sx={{
                                                     cursor: "pointer",
                                                     '&:hover': {
                                                         backgroundColor: "#131111"
@@ -135,7 +140,7 @@ const CoinsTable = () => {
                             </Table>
                         )}
                 </TableContainer>
-                <Pagination sx={{
+                <Pagination color='primary' sx={{
                     padding: 20,
                     width: "100%",
                     display: "flex",
@@ -146,13 +151,9 @@ const CoinsTable = () => {
                         setPage(value);
                         window.scroll(0, 450);
                         }}
-                        />                       
-                
+                        />                           
                 </Container>
         </ThemeProvider>  
-        
-           
-       
     </div>
   )
 };

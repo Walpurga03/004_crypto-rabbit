@@ -33,7 +33,7 @@ const Banner = () => {
                             textTransform: "capitalize",
                             fontFanily: "Monserrat",
                             }}>
-                            Get All The Info Regarding Yout Favorite Crypto Currency
+                           Informationen zu Ihrer Lieblings-Kryptowährung
                     </Typography>
                 </div>
                 <Carousel />
