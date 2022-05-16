@@ -9,6 +9,8 @@ import { CircularProgress } from '@mui/material';
 import { Line } from 'react-chartjs-2';
 import { chartDays } from '../config/data';
 import SelectButton from './SelectButton';
+import { Chart as ChartJS, registerables } from 'chart.js';
+ChartJS.register(...registerables);
 
 const CoinInfo = ( {coin}) => {
   const [historicData, setHistoricData] = useState();
