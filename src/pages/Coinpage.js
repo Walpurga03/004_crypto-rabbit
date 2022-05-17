@@ -33,7 +33,7 @@ const Coinpage = () => {
     <Box sx={{display:"flex"}} //container              
          >    
           <Box sx={{            //sidebar 
-            width: "50%",
+            width: "35%",
             display:"flex",
             flexDirection: "column",
             alignItems: "center",

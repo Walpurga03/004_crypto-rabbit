@@ -78,9 +78,9 @@ const CoinInfo = ( {coin}) => {
                 },
             }}
             />
-            <Box sx={{
+            <div style={{
                   display:"flex",
-                  mt: 1.5,
+                  marginTop: 20,
                   justifyContent: "space-around",
                   width: "100%"
             }}>
@@ -95,7 +95,7 @@ const CoinInfo = ( {coin}) => {
                   {day.label}
                 </SelectButton>
               ))}
-            </Box>
+            </div>
         </>)
       }
       </Box>
