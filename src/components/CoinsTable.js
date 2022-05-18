@@ -52,7 +52,7 @@ const CoinsTable = () => {
                 </Typography>
                 </Box>
                 <TextField 
-                    label="Suche nach einer Kryptowährung.." 
+                    label="Suche nach einem Coin.." 
                     variant='outlined'
                     style={{marginBottom: 20, width: "100%"}}
                     onChange={(e) => setSearch(e.target.value)}
@@ -65,7 +65,7 @@ const CoinsTable = () => {
                             <Table>
                                 <TableHead style={{backgroundColor: '#EEBC1D'}}> 
                                     <TableRow>
-                                        {["Coin", "Preis", "24h Change", "Market Cap"].map ((head) => (
+                                        {["Coin", "Preis", "24h", "Wert"].map ((head) => (
                                             <TableCell 
                                                 style={{
                                                     color: "black",
