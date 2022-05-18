@@ -4,13 +4,19 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { HistoricalChart } from '../config/api';
 import { CryptoState } from "../CryptoContext"
-import Box from "@mui/material/Box"
-import { CircularProgress } from '@mui/material';
+import { CircularProgress} from '@mui/material';
 import { Line } from 'react-chartjs-2';
 import { chartDays } from '../config/data';
 import SelectButton from './SelectButton';
 import { Chart as ChartJS, registerables } from 'chart.js';
+import { styled } from "@mui/material/styles"
 ChartJS.register(...registerables);
+
+const RespoContainer = styled('div')(({theme}) => ({
+  [theme.breakpoints.down('md')]: {
+   width:"100%"
+  }
+}))
 
 const CoinInfo = ( {coin}) => {
   const [historicData, setHistoricData] = useState();
@@ -37,7 +43,8 @@ const CoinInfo = ( {coin}) => {
     })
   return (
     <ThemeProvider theme={darkTheme}>
-      <Box            //container               
+     
+      <RespoContainer            //container               
           sx={{
             width: "75%",
             display: "flex",
@@ -98,7 +105,7 @@ const CoinInfo = ( {coin}) => {
             </div>
         </>)
       }
-      </Box>
+      </RespoContainer>
     </ThemeProvider>
   )
 }

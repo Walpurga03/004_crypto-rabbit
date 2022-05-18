@@ -36,7 +36,8 @@ const CoinsTable = () => {
       });
       const handleSearch = () => {
           return coins.filter((coin) => (
-              coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search)
+              coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search) || coin.name.toUpperCase().includes(search) || coin.symbol.toUpperCase().includes(search)
+
           ))
       }
   return (
@@ -140,18 +141,19 @@ const CoinsTable = () => {
                             </Table>
                         )}
                 </TableContainer>
-                <Pagination color='primary' sx={{
-                    padding: 20,
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    }}
-                    count={(handleSearch()?.length / 10).toFixed(0)}
-                    onChange={(_, value) => {
-                        setPage(value);
-                        window.scroll(0, 450);
+               
+                    <Pagination color="primary" sx={{
+                        padding: 20,
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
                         }}
-                        />                           
+                        count={(handleSearch()?.length / 10).toFixed(0)}
+                        onChange={(_, value) => {
+                            setPage(value);
+                            window.scroll(0, 450);
+                            }}
+                            />                                         
                 </Container>
         </ThemeProvider>  
     </div>

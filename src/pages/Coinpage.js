@@ -8,38 +8,54 @@ import { CryptoState } from '../CryptoContext';
 import { Box, LinearProgress, Typography } from  '@mui/material';
 import parse from 'html-react-parser'
 import { numberWithCommas } from '../components/Banner/Carousel';
+import {styled} from "@mui/material/styles"
 
+const RespoContainer = styled('div')(({theme}) => ({
+  [theme.breakpoints.up('md')]: {
+    display:"flex"
+   },
+  [theme.breakpoints.down('md')]: {
+   flexDirection:"column",
+   alignItems: "center",
+   padding: "0.3rem"
+  }
+}))
+
+const RespoSidebar = styled('div')(({theme}) => ({
+  [theme.breakpoints.up('md')]: {
+            width: "35%",
+            display:"flex",
+            flexDirection: "column",
+            alignItems: "center",
+            borderRight: "2px solid grey"
+   },
+  [theme.breakpoints.down('md')]: {
+             width: "100%",
+            display:"flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "2rem"
+  }
+}))
 
 const Coinpage = () => {
     const { id } = useParams();
     const [coin, setCoin] = useState();
     const { currency, symbol } =CryptoState();
 
-    
-    
     useEffect(() => {
       const fetchCoin = async() => {
         const { data } = await axios.get(SingleCoin(id));
-
         setCoin(data);
     };
         fetchCoin();
-
     }, [id]);
 
     if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
 
   return (
-    <Box sx={{display:"flex"}} //container              
-         >    
-          <Box sx={{            //sidebar 
-            width: "35%",
-            display:"flex",
-            flexDirection: "column",
-            alignItems: "center",
-            borderRight: "2px solid grey"
-          }}                   
-          >
+    <RespoContainer>    
+          <RespoSidebar>
             <img 
             src={coin?.image.large}
             alt={coin?.name}
@@ -72,7 +88,7 @@ const Coinpage = () => {
                 alignSelf: "start",
                 p: 1.7,
                 pt: 0.8,
-                width: "100%"
+                width: "100%", 
               }}
             >
                     <span style={{display: "flex"}}>
@@ -102,7 +118,7 @@ const Coinpage = () => {
                             fontFamily: "Montserrat"
                           }}
                         >
-                            Current Price:
+                            Stück Preis:
                         </Typography>
                             &nbsp; &nbsp;
                         <Typography vaiant="h5" 
@@ -121,10 +137,11 @@ const Coinpage = () => {
                            sx={{
                             fontWeight: "bold",
                             mb: 1.5,
-                            fontFamily: "Montserrat"
+                            fontFamily: "Montserrat",
+                            alignItems:"center",
                           }}
                        >
-                            Market Cap:
+                            Gesamt Wert:
                         </Typography>
                             &nbsp; &nbsp;
                         <Typography vaiant="h5" 
@@ -141,9 +158,9 @@ const Coinpage = () => {
                         </Typography>
                     </span>
             </Box>
-        </Box>
+        </RespoSidebar>
         <CoinInfo coin={coin} />
-    </Box>
+    </RespoContainer>
   )
 }
 
