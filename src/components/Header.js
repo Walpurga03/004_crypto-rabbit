@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CryptoState } from '../CryptoContext';
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import AuthModal from './Authentication/AuthModel'
 
 const darkTheme = createTheme({
   palette: {
@@ -41,6 +42,7 @@ const Header = () => {
                         <MenuItem value={'USD'}>USD</MenuItem>
                         <MenuItem value={'EUR'}>EUR</MenuItem>
                     </Select>
+                    <AuthModal />
                 </Toolbar>
             </Container>
         </AppBar>
