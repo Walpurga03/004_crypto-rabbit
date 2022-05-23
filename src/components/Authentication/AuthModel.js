@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import { AppBar, Tab, Tabs } from '@mui/material';
 import Login from './Login';
 import Signup from './Signup';
-import { color } from '@mui/system';
 
 const style = {
   position: 'absolute',
@@ -25,9 +24,7 @@ export default function AuthModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

@@ -4,10 +4,9 @@ import Homepage from './pages/Homepage'
 import Coinpage from './pages/Coinpage'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { Box } from '@mui/material';
-
+import MuiAlert from "./components/MuiAlert"
 
 function App() {
-  
   return (
     <Router>
       <Box sx={{
@@ -20,6 +19,7 @@ function App() {
           <Route path='/coins/:id' element={<Coinpage />} />
         </Routes>
       </Box>
+      <MuiAlert />
     </Router>
   );
 }
