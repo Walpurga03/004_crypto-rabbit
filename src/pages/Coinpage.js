@@ -75,6 +75,26 @@ const Coinpage = () => {
       }
     }
 
+    const removeFromWatchlist = async () => {
+      const coinRef = doc(db, "watchlist", user.uid);
+      try {
+        await setDoc(coinRef,
+          {coins: watchlist.filter((watch) => watch !== coin?.id)},
+          {merge:'true'})
+          setAlert({
+            open:true,
+            message: `${coin.name} Removed to the Watchlist !`,
+            type: "success",
+          })
+      } catch (error) {
+        setAlert({
+          open:true,
+          message: error.message,
+          type: "error",
+        })
+      }
+    }
+
     if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
 
   return (
@@ -187,9 +207,9 @@ const Coinpage = () => {
                         style={{
                           width: "100%",
                           height: 40,
-                          backgroundColor:"#EEBC1D"
+                          backgroundColor: "#EEBC1D"
                         }}
-                        onClick={addToWatchlist}
+                        onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
                         >
                           
                           {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
