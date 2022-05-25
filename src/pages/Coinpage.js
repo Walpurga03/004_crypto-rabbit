@@ -5,10 +5,13 @@ import { useParams } from 'react-router-dom'
 import CoinInfo from '../components/CoinInfo';
 import { SingleCoin } from '../config/api';
 import { CryptoState } from '../CryptoContext';
-import { Box, LinearProgress, Typography } from  '@mui/material';
+import { Box, Button, LinearProgress, Typography } from  '@mui/material';
 import parse from 'html-react-parser'
 import { numberWithCommas } from '../components/Banner/Carousel';
 import {styled} from "@mui/material/styles"
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+
 
 const RespoContainer = styled('div')(({theme}) => ({
   [theme.breakpoints.up('md')]: {
@@ -41,7 +44,7 @@ const RespoSidebar = styled('div')(({theme}) => ({
 const Coinpage = () => {
     const { id } = useParams();
     const [coin, setCoin] = useState();
-    const { currency, symbol } =CryptoState();
+    const { currency, symbol, user, watchlist, setAlert } =CryptoState();
 
     useEffect(() => {
       const fetchCoin = async() => {
@@ -50,6 +53,27 @@ const Coinpage = () => {
     };
         fetchCoin();
     }, [id]);
+
+    const inWatchlist = (watchlist || '').includes(coin?.id);
+
+    const addToWatchlist = async () => {
+      const coinRef = doc(db, "watchlist", user.uid);
+      try {
+        await setDoc(coinRef,
+          {coins: watchlist ? [...watchlist,coin?.id] : [coin?.id]})
+          setAlert({
+            open:true,
+            message: `${coin.name} Added to the Watchlist !`,
+            type: "success",
+          })
+      } catch (error) {
+        setAlert({
+          open:true,
+          message: error.message,
+          type: "error",
+        })
+      }
+    }
 
     if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
 
@@ -157,6 +181,20 @@ const Coinpage = () => {
                             M
                         </Typography>
                     </span>
+                    {user && (
+                      <Button
+                        variant='outlined'
+                        style={{
+                          width: "100%",
+                          height: 40,
+                          backgroundColor:"#EEBC1D"
+                        }}
+                        onClick={addToWatchlist}
+                        >
+                          
+                          {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+                      </Button>
+                    )}
             </Box>
         </RespoSidebar>
         <CoinInfo coin={coin} />

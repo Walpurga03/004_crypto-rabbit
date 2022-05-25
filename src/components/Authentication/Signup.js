@@ -15,7 +15,7 @@ const handleSubmit = async () => {
     if (password !== confirmPassword) {
         setAlert({
             open:true,
-            message:'Password stimmt nicht',
+            message:'Password do not match',
             type:'error'
         })
         return;
@@ -32,6 +32,8 @@ const handleSubmit = async () => {
                 message: `Sign Up Successful. Welcome ${result.user.email}`,
                 type: "success",
             });
+            
+           
     }catch (error){
         setAlert({
             open:true,
