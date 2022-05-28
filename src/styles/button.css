@@ -3,13 +3,13 @@
     background-color: black;
     width: 22%;
     padding: 10px;
-    color: gold;
-    border: 1px solid gold;
+    color: #f2a900;
+    border: 1px solid #f2a900;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
 }
 .selectButton:hover {
-    background-color: gold;
+    background-color: #f2a900;
     color: black;
 }

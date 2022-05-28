@@ -2,7 +2,6 @@ import { Alert, Snackbar, Stack } from '@mui/material'
 import React from 'react'
 import { CryptoState } from '../CryptoContext'
 
-
 const MuiAlert = () => {
   const { alert, setAlert } = CryptoState();
   const handleCloseAlert = (event, reason) => {

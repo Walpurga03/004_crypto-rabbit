@@ -7,7 +7,6 @@ import { CryptoState } from '../CryptoContext'
 import { numberWithCommas } from './Banner/Carousel'
 import { useNavigate } from 'react-router-dom';
 
-
 const CoinsTable = () => {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1)
@@ -27,7 +26,6 @@ const CoinsTable = () => {
       const handleSearch = () => {
           return coins.filter((coin) => (
               coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search) || coin.name.toUpperCase().includes(search) || coin.symbol.toUpperCase().includes(search)
-
           ))
       }
   return (
@@ -51,10 +49,10 @@ const CoinsTable = () => {
                 <TableContainer>
                     {
                         loading ? (
-                            <LinearProgress style={{ backgroundColor: "gold"}} />
+                            <LinearProgress style={{ backgroundColor: "#f2a900"}} />
                         ) : (
                             <Table>
-                                <TableHead style={{backgroundColor: '#EEBC1D'}}> 
+                                <TableHead style={{backgroundColor: '#f2a900'}}> 
                                     <TableRow>
                                         {["Coin", "Preis", "24h", "Wert"].map ((head) => (
                                             <TableCell 

@@ -15,7 +15,7 @@ const Login = ({handleClose}) => {
       if (!email || !password) {
           setAlert({
               open:true,
-              message:'Please fill all the Fields',
+              message:'Bitte füllen Sie alle Felder aus!',
               type:'error'
           });
           return;
@@ -25,7 +25,7 @@ const Login = ({handleClose}) => {
 
           setAlert({
             open:true,
-            message: `Login Successful. Welcome ${result.user.email}`,
+            message: `Anmeldung erfolgreich. Hallo ${result.user.email}`,
             type: "success",
         });
         } catch (error) {
@@ -42,7 +42,7 @@ const Login = ({handleClose}) => {
         <TextField 
             variant='outlined'
             type="email"
-            label="Enter Email"
+            label="Eingabe Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
@@ -50,7 +50,7 @@ const Login = ({handleClose}) => {
         <TextField 
             variant='outlined'
             type="password"
-            label="Enter Password"
+            label="Eingabe Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             fullWidth
@@ -58,9 +58,9 @@ const Login = ({handleClose}) => {
             <Button
                 variant='contained'
                 size='large'
-                style={{backgroundColor: '#EEBC1D'}}
+                style={{backgroundColor: '#f2a900'}}
                 onClick={handleSubmit}>
-                    Login
+                    Anmelden
             </Button>
 </Box>
     

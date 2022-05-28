@@ -10,8 +10,6 @@ import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
-
-
 const container = {
   width: 350,
   padding: 3,
@@ -32,16 +30,16 @@ const picture = {
   width: 200,
   height: 200,
   cursor: "pointer",
-  backgroundColor: "#EEBC1D",
+  backgroundColor: "#f2a900",
   objectFit: "contain"
 }
 const logout ={
   height: "8%",
   width: "100%",
-  backgroundColor: "#EEBC1D",
+  backgroundColor: "#f2a900",
   margin: "2"
 }
-const watchlist = {
+const watchlistStyles = {
   flex:1,
   width: "100%",
   backgroundColor: "gray",
@@ -49,11 +47,14 @@ const watchlist = {
   padding:1,
   flexDirection:"column",
   alignItems: "center",
+  justifyContent:"center",
   gap: 12,
   overflowY: "scroll"
 }
 const watchlistCoin = {
   padding: 0.8,
+  marginTop: 1, 
+  fontSize:20,
   borderRadius: 1,
   color: "black",
   width: "100%",
@@ -86,7 +87,7 @@ export default function UserSidebar() {
         {merge:'true'})
         setAlert({
           open:true,
-          message: `${coin.name} Removed to the Watchlist !`,
+          message: `${coin.name} wurde von der Watchlist gelöscht!`,
           type: "success",
         })
     } catch (error) {
@@ -103,7 +104,7 @@ export default function UserSidebar() {
     setAlert({
       open: true,
       type: "success",
-      message: "Lougout Successfull !"
+      message: "Abmelden Erfolgreich !"
     })
   }
   toggleDrawer();
@@ -143,10 +144,13 @@ export default function UserSidebar() {
                   >
                     {user.displayName || user.email}
                   </span>
-                  <Box sx={watchlist}>
+                  <Box sx={watchlistStyles}>
                     <span style={{
-                      fontSize:15,
-                      textShadow: "0 0 5px black"
+                      fontSize:25,
+                      textShadow: "0 0 5px black",
+                      display: "flex",
+                      justifyContent:"center",  
+                      color:"white"    
                     }}>Watchlist
                     </span>
                     {coins.map((coin) => {
@@ -168,11 +172,11 @@ export default function UserSidebar() {
                     })}
                   </Box>
                 </Box>
-                <Button 
+                <Button style={{color:"black", fontWeight:"bold"}}
                   variant='containd'
                   sx={logout}
                   onClick={logOut}>
-                    Logout
+                    Abmelden
                 </Button>
             </Box>
           </Drawer>

@@ -15,7 +15,7 @@ const handleSubmit = async () => {
     if (password !== confirmPassword) {
         setAlert({
             open:true,
-            message:'Password do not match',
+            message:'Password stimmt nicht überein!',
             type:'error'
         })
         return;
@@ -29,7 +29,7 @@ const handleSubmit = async () => {
             console.log(result)
             setAlert({
                 open:true,
-                message: `Sign Up Successful. Welcome ${result.user.email}`,
+                message: `Anmeldung erfolgreich. Hallo ${result.user.email}`,
                 type: "success",
             });
             
@@ -49,7 +49,7 @@ const handleSubmit = async () => {
             <TextField 
                 variant='outlined'
                 type="email"
-                label="Enter Email"
+                label="Eingabe Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 fullWidth
@@ -57,7 +57,7 @@ const handleSubmit = async () => {
             <TextField 
                 variant='outlined'
                 type="password"
-                label="Enter Password"
+                label="Eingabe Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
@@ -65,7 +65,7 @@ const handleSubmit = async () => {
                 <TextField 
                 variant='outlined'
                 type="password"
-                label="Confirm Password"
+                label="Wiederhole Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 fullWidth
@@ -75,7 +75,7 @@ const handleSubmit = async () => {
                     size='large'
                     style={{backgroundColor: '#EEBC1D'}}
                     onClick={handleSubmit}>
-                        Sign Up
+                        Registrieren
                 </Button>
     </Box>
   )

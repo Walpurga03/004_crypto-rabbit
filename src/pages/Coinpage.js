@@ -12,7 +12,6 @@ import {styled} from "@mui/material/styles"
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
-
 const RespoContainer = styled('div')(({theme}) => ({
   [theme.breakpoints.up('md')]: {
     display:"flex"
@@ -63,7 +62,7 @@ const Coinpage = () => {
           {coins: watchlist ? [...watchlist,coin?.id] : [coin?.id]})
           setAlert({
             open:true,
-            message: `${coin.name} Added to the Watchlist !`,
+            message: `${coin.name} hinzugefügt zur Watchlist!`,
             type: "success",
           })
       } catch (error) {
@@ -83,7 +82,7 @@ const Coinpage = () => {
           {merge:'true'})
           setAlert({
             open:true,
-            message: `${coin.name} Removed to the Watchlist !`,
+            message: `${coin.name} löschen aus der Watchlist!`,
             type: "success",
           })
       } catch (error) {
@@ -95,7 +94,7 @@ const Coinpage = () => {
       }
     }
 
-    if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
+    if (!coin) return <LinearProgress style={{ backgroundColor: "#f2a900" }} />;
 
   return (
     <RespoContainer>    
@@ -205,14 +204,16 @@ const Coinpage = () => {
                       <Button
                         variant='outlined'
                         style={{
+                          color:"black",
+                          fontWeight:"bold",
                           width: "100%",
                           height: 40,
-                          backgroundColor: "#EEBC1D"
+                          backgroundColor: "#f2a900"
                         }}
                         onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
                         >
                           
-                          {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+                          {inWatchlist ? "Löschen von der Watchlist" : "Hinzufügen zur Watchlist"}
                       </Button>
                     )}
             </Box>

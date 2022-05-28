@@ -5,7 +5,8 @@ import React from 'react'
 const Banner = () => {
   return (
     <div  style={{
-        backgroundImage: "url(./banner2.jpg"}}>
+        backgroundImage: "url(./btc_3.jpg",
+       }}>
         <Container style={{
             height: 400,
             display: "flex",
@@ -29,7 +30,7 @@ const Banner = () => {
                     </Typography>
                     <Typography variant='subtitle2'
                         style={{
-                            color: "darkgrey",
+                            color: "white",
                             textTransform: "capitalize",
                             fontFanily: "Monserrat",
                             }}>

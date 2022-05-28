@@ -49,7 +49,7 @@ export default function AuthModal() {
     signInWithPopup(auth, googleProvider).then(res => {
       setAert({
         open: true,
-        message: `Sign Up Successful. Wlcome ${res.user.email}`,
+        message: `Registriereung erfolgreich. Hallo ${res.user.email}`,
         type: "success"
       })
     }).catch(error => {
@@ -67,7 +67,7 @@ export default function AuthModal() {
         style={{
             width: 85,
             height: 40,
-            backgroundColor: '#EEBC1D',
+            backgroundColor: '#f2a900',
         }} onClick={handleOpen}>Login</Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -90,14 +90,14 @@ export default function AuthModal() {
                     variant="fullWidth"
                     style={{ borderRadius: 10 }}
                     >
-                        <Tab label='Login'/>
-                        <Tab label='Sign Up'/>
+                        <Tab label='Anmeldung'/>
+                        <Tab label='Registriereung'/>
                 </Tabs>
            </AppBar>
            {value===0 && <Login handleClose={handleClose} />}
            {value===1 && <Signup handleClose={handleClose}/>}
            <Box sx={google}>
-             <span style={{color:"white"}}>OR</span>
+             <span style={{color:"white"}}>oder</span>
              <GoogleButton
              style={{width: "100%", outline: "none"}}
              onClick={signInWithGoogle}>
