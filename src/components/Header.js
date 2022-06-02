@@ -25,7 +25,7 @@ const Header = () => {
                     <Typography onClick={()=> navigate("/")}
                     sx={{
                       flex:1,
-                      color:"#f2a900",
+                      color:"#FF9900",
                       fontFamily:"Montserrat",
                       fontWeight:"bold",
                       cursor:"pointer"
