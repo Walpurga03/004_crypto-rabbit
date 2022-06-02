@@ -3,13 +3,13 @@
     background-color: black;
     width: 22%;
     padding: 10px;
-    color: #f2a900;
-    border: 1px solid #f2a900;
+    color: #FF9900;
+    border: 1px solid #FF9900;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
 }
 .selectButton:hover {
-    background-color: #f2a900;
+    background-color: #FF9900;
     color: black;
 }

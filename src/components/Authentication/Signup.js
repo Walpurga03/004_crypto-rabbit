@@ -73,7 +73,7 @@ const handleSubmit = async () => {
                 <Button
                     variant='contained'
                     size='large'
-                    style={{backgroundColor: '#EEBC1D'}}
+                    style={{backgroundColor: '#FF9900'}}
                     onClick={handleSubmit}>
                         Registrieren
                 </Button>

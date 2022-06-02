@@ -1,17 +1,21 @@
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import { CryptoState } from '../../CryptoContext';
-import { Avatar, Button } from '@mui/material';
+import { autocompleteClasses, Avatar, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { numberWithCommas } from '../Banner/Carousel';
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
+
+let btcWert = "";
+const anzahl= 0.01;
+const heute = new Date();
+
 const container = {
-  width: 350,
+  width: 700,
   padding: 3,
   height: "100%",
   display: "flex",
@@ -64,6 +68,21 @@ const watchlistCoin = {
   backgroundColor: "#EEBC1D",
   boxShadow: "0 0 3px black",
 }
+const bitcoinListGes = {
+  position: 'absolute',
+  bottom: 135,
+  zIndex: 'tooltip',
+  padding: 0.8,
+  fontSize:20,
+  borderRadius: 1,
+  color: "black",
+  width: "88%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  backgroundColor: "green",
+  boxShadow: "0 0 3px black",
+}
 
 export default function UserSidebar() {
   const [state, setState] = React.useState({
@@ -71,6 +90,7 @@ export default function UserSidebar() {
   });
 
   const {user, setAlert, watchlist, coins, symbol } = CryptoState();
+  
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -98,6 +118,7 @@ export default function UserSidebar() {
       })
     }
   }
+
 
   const logOut = () => {
     signOut(auth);
@@ -151,23 +172,38 @@ export default function UserSidebar() {
                       display: "flex",
                       justifyContent:"center",  
                       color:"white"    
-                    }}>Watchlist
+                    }}>Bitcoin-list
                     </span>
                     {coins.map((coin) => {
-                      if ((watchlist || '').includes(coin.id))
+                      console.log(coin)
+                       btcWert = (anzahl * (parseInt(coin.current_price))).toFixed(2)
+                      if ((watchlist || '').includes(coin.id)
+                      )
                       return(
-                        <Box sx={watchlistCoin}>
-                          <span>{coin.name}</span>
+                        <div>
+                          <Box sx={watchlistCoin}>
+                            <span style={{display: "flex", gap:8}}>
+                              {coin.symbol+" "}
+                              {anzahl}
+                            </span>
+                            <span>{"2022-05"}</span>
+                            <span style={{display: "flex", gap:8}}>
+                              {symbol}
+                              {btcWert}
+                            </span>
+                          </Box>
+                          <Box sx={bitcoinListGes}>
                           <span style={{display: "flex", gap:8}}>
-                            {symbol}
-                            {numberWithCommas(coin.current_price.toFixed(2))}
-                            <AiFillDelete 
-                              style={{curser: "pointer"}}
-                              fontsize="16"
-                              onClick={() => removeFromWatchlist(coin)} 
-                              />
-                          </span>
-                        </Box>
+                              {coin.symbol+" "}
+                              {anzahl}
+                            </span>
+                            <span>{"Gesamt"}</span>
+                            <span style={{display: "flex", gap:8}}>
+                              {symbol}
+                              {btcWert}
+                            </span>
+                          </Box>
+                        </div>
                       )
                     })}
                   </Box>
